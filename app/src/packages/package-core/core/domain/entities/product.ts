@@ -1,6 +1,5 @@
 import { ProductProps } from "@/packages/package-core/types";
 
-
 // Product
 export class Product {
   private props: ProductProps;

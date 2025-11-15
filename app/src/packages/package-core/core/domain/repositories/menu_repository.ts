@@ -1,9 +1,10 @@
+import { MenuCreateInput } from "@/packages/package-core/types";
 import { Menu } from "../entities/menu";
 
 export interface MenuRepository {
   findById(id: string): Promise<Menu | null>;
   findByDisplayId(userId: string): Promise<Menu[]>;
-  create(menu: Menu): Promise<Menu>;
+  create(menu: MenuCreateInput): Promise<Menu>;
   update(id: string, menu: Partial<Menu>): Promise<Menu>;
   delete(id: string): Promise<boolean>;
 }
