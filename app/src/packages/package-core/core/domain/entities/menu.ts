@@ -1,6 +1,5 @@
 import { MenuResponse } from "@/packages/package-core/types";
 
-
 // Menu
 export class Menu {
     private props: MenuResponse;

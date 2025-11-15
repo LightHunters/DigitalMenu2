@@ -1,4 +1,4 @@
-import { MenuBasicProps, MenuCreateInput } from "@/packages/package-core/types";
+import { MenuCreateInput } from "@/packages/package-core/types";
 import { Menu } from "../../domain/entities/menu";
 import { MenuRepository } from "../../domain/repositories/menu_repository";
 import { UserRepository } from "../../domain/repositories/user_repository";
@@ -17,16 +17,16 @@ export class CreateMenuUseCase {
         }
 
         const menu = new Menu({
-          name: menuData.name,
-          displayId: menuData.displayId,
-          avatar: menuData.avatar,
-          bio: menuData.bio,
-          categories: menuData.categories,
-          subName: menuData.subName,
-          connections: menuData.connections,
-          createdAt: new Date,
-          createdBy: menuData.createdBy
-        });
+            name: menuData.name,
+            displayId: menuData.displayId,
+            avatar: menuData.avatar,
+            bio: menuData.bio,
+            categories: menuData.categories,
+            subName: menuData.subName,
+            connections: menuData.connections,
+            createdAt: new Date,
+            createdBy: menuData.createdBy
+        }) as MenuCreateInput;
 
         return await this.menuRepository.create(menu);
     }
