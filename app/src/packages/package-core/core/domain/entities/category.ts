@@ -1,6 +1,5 @@
 import { CategoryProps } from "@/packages/package-core/types";
 
-
 // Categoey
 export class Category {
   private props: CategoryProps;
