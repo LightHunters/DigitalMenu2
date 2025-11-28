@@ -12,11 +12,11 @@ export class MenuDatabaseMenuRepository implements Partial<QueryReposity<Menu>> 
         const final_payload = {
             ...menu,
             createdAt: new Date,
-            createdBy: ""
+            // createdBy: ""
         } as Menu
         try {
             console.log("data---", final_payload)
-            return await this.prisma.create(final_payload);
+            return await this.prisma.menu.create({ data: menu });
         } catch (e) {
             throw new Error("Failed created", e as any)
         }
@@ -24,25 +24,41 @@ export class MenuDatabaseMenuRepository implements Partial<QueryReposity<Menu>> 
     }
     async findById(id: string): Promise<Menu | null> {
         try {
-            return await this.prisma.findById(id);
+            return await this.prisma.menu.findUnique({ where: { id } });
         } catch (e) {
-            throw new Error("Failed to find by id")
+            throw new Error("Failed to find by id", e as any)
         }
     }
     async findAll(): Promise<Menu[]> {
         try {
-            return await this.prisma.findAll();
+            return await this.prisma.menu.findMany();
         } catch (e) {
-            throw new Error("Failed to fetch all", e as any)
+            throw new Error(`Failed to fetch all: ${e instanceof Error ? e.message : e}`)
         }
     }
     async delete(id: string): Promise<boolean> {
         try {
-            return await this.prisma.delete(id)
+            return await this.prisma.menu.delete(id)
         } catch (e) {
             throw new Error("Failed to delete", e as any)
         }
     }
-
+    async update(id: string, data: Partial<Menu>): Promise<Menu> {
+        try {
+            return await this.prisma.menu.update({
+                where: { id },
+                data,
+            });
+        } catch (e) {
+            throw new Error("Failed to update", e as any)
+        }
+    }
+    async findOne(where: Partial<Menu>): Promise<Menu | null> {
+        try {
+            return await this.prisma.menu.findUnique({ where })
+        } catch (e) {
+            throw new Error("Faild to find one ", e as any)
+        }
+    }
 
 }

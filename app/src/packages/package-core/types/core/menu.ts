@@ -7,7 +7,7 @@ export interface MenuBasicProps {
     displayId: string;
     name: string;
     categories?: string[]
-    subName?: string;
+    subname?: string;
     avatar?: string;
     bio?: string;
     connections?: Connection[];

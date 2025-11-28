@@ -5,5 +5,6 @@ export interface QueryReposity<T> {
     create(data: T): Promise<T>;
     update(id: string, data: Partial<T>): Promise<T>;
     delete(id: string): Promise<boolean>;
-    findAll(): Promise<T[]>
+    findAll(): Promise<T[]>,
+    findOne?(where: Partial<T>): Promise<T | null>
 }
