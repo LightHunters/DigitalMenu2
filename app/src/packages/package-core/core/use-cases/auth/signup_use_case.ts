@@ -26,8 +26,9 @@ export class SignupUseCase {
             email: input.email,
             password: hashedPassword,
             name: input.name,
-            createdAt: new Date(),
-            updatedAt: new Date(),
+            avatar: ''
+            // createdAt: new Date(),
+            // updatedAt: new Date(),
         });
 
         const createdUser = await this.userRepository.create(user);

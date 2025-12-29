@@ -39,7 +39,7 @@ const MenuDetails = ({id}: {id: string}) => {
            initial='hidden'
            animate='visible'
           >
-         <Avatar className={`h-22! w-22!`} alt={data?.displayId} src='/images/imageRes.webp' />
+         <Avatar className={`h-22! w-22!`} alt={data?.displayId} src={data?.avatar ? data.avatar : '/images/imageRes.webp'} />
            </motion.div>
            <Flex gap='1' direction='column' className="mr-5">
              <h1 className="font-bold text-white">{data?.name}</h1> 

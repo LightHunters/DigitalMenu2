@@ -11,6 +11,7 @@ export class User {
   get email() { return this.props.email; }
   get password() { return this.props.password; }
   get name() { return this.props.name; }
+  get avatar() { return this.props.avatar; }
   // get createdAt() { return this.props.createdAt; }
   // get updatedAt() { return this.props.updatedAt; }
   // get updatedBy() { return this.props.updatedBy; }
