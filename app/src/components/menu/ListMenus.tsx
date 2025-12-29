@@ -11,8 +11,6 @@ import ErrorBox from "../ui/ErrorBox"
 import Loader from "../ui/Loader"
 
 
-
-
 const ListMenus = () => {
  const {data, loadingListMenu, errorListMenu} = useListMenus()
 
@@ -34,7 +32,7 @@ const ListMenus = () => {
         <Link href={`/menu/${item.id}`}>
           <div className="absolute rounded-[1.1rem] inset-0 bg-black/60"></div>
 
-          <Avatar className={`h-22! w-22! absolute top-37 right-3.5`} alt={item.displayId} src='/images/imageRes.webp' />
+          <Avatar className={`h-22! w-22! absolute top-37 right-3.5`} alt={item.displayId} src={item.avatar ? item.avatar : '/images/imageRes.webp'} />
         
           <Flex gap='1' direction='column' className="absolute text-white bottom-7 right-29">
              <h1 className="font-bold text-white">{item.name}</h1> 

@@ -15,6 +15,6 @@ export class Product {
   get price() { return this.props.price; }
   get createdAt() { return this.props.createdAt; }
   get updatedAt() { return this.props.updatedAt; }
-  get updatedBy() { return this.props.updatedBy; }
-  get createdBy() { return this.props.createdBy; }
+  // get updatedBy() { return this.props.updatedBy; }
+  // get createdBy() { return this.props.createdBy; }
 }

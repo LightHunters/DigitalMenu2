@@ -24,8 +24,6 @@ export class DatabaseUserRepository implements QueryReposity<User> {
         email: user.email,
         password: user.password,
         name: user.name,
-        createdAt: user.createdAt,
-        updatedAt: user.updatedAt,
       },
     });
     return new User(createdUser);

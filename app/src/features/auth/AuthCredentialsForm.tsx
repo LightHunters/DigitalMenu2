@@ -54,9 +54,9 @@ const handleSignup = (data: FormData) => {
         { name: data.name, email: data.email, password: data.password },
         {
             onSuccess: (res) => {
+              router.push(`/get-start/${res.data.user.props.id}`)
               console.log("response", res.data.user.props.id)
                 reset()
-                router.push(`/get-start/${res.data.user.props.id}`)
             }
         }
     )

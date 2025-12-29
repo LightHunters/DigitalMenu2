@@ -10,21 +10,19 @@ import {
   IconButton,
   Box,
   Typography,
-  Button
+  Button,
 } from "@mui/material";
 import { TiThMenu } from "react-icons/ti";
 import { useCurrentUser } from "@/providers/UserProvider";
-import { getCurrentMenu } from "@/packages/lib/prisma/auth/menu-auth.ts";
 import { usePathname } from "next/navigation";
+import { getCurrentMenu } from "@/packages/lib/prisma/auth/menu-auth.ts";
 
 export default function MainMenu() {
   const [open, setOpen] = useState(false);
-  const [currentMenuId, setCurrentMenuId] = useState<null | string>(null)
+  const [currentMenuId, setCurrentMenuId] = useState<string | null>(null);
   const currentUser = useCurrentUser();
-  const pahtname = usePathname()
-  
-  // console.log('current user id', currentMenuId)
-  // if(!currentUser) return notFound();
+  const pathname = usePathname();
+
   const toggle = () => setOpen(!open);
 
   useEffect(() => {
@@ -34,32 +32,33 @@ export default function MainMenu() {
         setCurrentMenuId(null);
         return;
       }
-      setCurrentMenuId(c.id!);
+      setCurrentMenuId(c.id ?? null);
     }
-    fetchMenu();
-  })
-  
-  // dont show navbar on menu detail page or auth page
-  if(pahtname.startsWith("/menu/") || pahtname.startsWith("/auth")) return null
 
+    fetchMenu();
+  }, []);
+
+  useEffect(() => {
+    setOpen(false);
+  }, [pathname]);
+
+  if (pathname.startsWith("/menu/") || pathname.startsWith("/auth")) {
+    return null;
+  }
 
   return (
     <>
-      
-        <IconButton onClick={toggle} className={`p-5!`}>
-          <TiThMenu />
-        </IconButton>
-      
+      <IconButton onClick={toggle} className="p-5!">
+        <TiThMenu />
+      </IconButton>
 
-
-      <Drawer anchor="left" open={open} onClose={toggle}>
+      <Drawer anchor="left" open={open} onClose={() => setOpen(false)}>
         <Box sx={{ width: 260, p: 2 }}>
           <Typography variant="h6" sx={{ mb: 2, textAlign: "center" }}>
             منوی من
           </Typography>
-          {currentUser && (
 
-
+          {currentUser ? (
             <List>
               <ListItemButton
                 component={Link}
@@ -67,18 +66,35 @@ export default function MainMenu() {
               >
                 <ListItemText primary="حساب کاربری" />
               </ListItemButton>
-              <ListItemButton component={Link} href={`/dashboard/category?menuId=${currentMenuId}`}>
-                <ListItemText primary="دسته‌ها" />
-              </ListItemButton>
 
-              {/* <ListItemButton component={Link} href="/dashboard/products">
-                <ListItemText primary="محصولات" />
-              </ListItemButton> */}
-
-
+              {
+                currentMenuId ? (
+                  <>
+                    <ListItemButton
+                      component={Link}
+                      href={`/dashboard/category?menuId=${currentMenuId}`}
+                    >
+                      <ListItemText primary="دسته‌ها" />
+                    </ListItemButton>
+                    <ListItemButton
+                      component={Link}
+                      href={`/menu/${currentMenuId}`}
+                    >
+                      <ListItemText primary="منوی من" />
+                    </ListItemButton>
+                  </>
+                ) :
+                  (
+                    <ListItemButton
+                      component={Link}
+                      href={`/get-start/${currentUser.id}`}
+                    >
+                      <ListItemText primary="ایجاد منو" />
+                    </ListItemButton>
+                  )
+              }
             </List>
-          )}
-          {!currentUser && (
+          ) : (
             <Box sx={{ mt: 3 }}>
               <Button
                 component={Link}
