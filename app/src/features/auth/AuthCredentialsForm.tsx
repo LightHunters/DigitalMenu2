@@ -13,8 +13,9 @@ import { FormData } from './types'
 import Input from './Input'
 import { EmailIcon, PasswordIcon, UserIcon } from '@/utils/icons'
 import { useCurrentUser } from '@/providers/UserProvider'
-import { Div, P, Span } from '@/components/style'
+import { BoxRed, Div, P, Span } from '@/components/style'
 import { Button } from '@mui/material'
+import { translateAuthError } from '@/utils/authErrorsFa'
 
 
 
@@ -83,9 +84,9 @@ const handleSignup = (data: FormData) => {
         className='bg-[#eee] mt-4 relative shadow  px-9 py-10 max-[387px]:w-[87%] w-80'
          > 
          
-         {isLogin && loginError && <P>{loginError.message}</P>}
+         {isLogin && loginError && <BoxRed>{translateAuthError(loginError.message)}</BoxRed>}
 
-         {!isLogin && signupError && <P>{(signupError.message.includes('exists') ? 'این کاربر وجود دارد': signupError.message)}</P>}
+         {!isLogin && signupError && <BoxRed>{translateAuthError(signupError.message)}</BoxRed>}
          
         <Flex 
           justify='center'

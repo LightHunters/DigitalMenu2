@@ -26,8 +26,8 @@ export const Div = tw.div `
  relative
 `
 
-export const P = tw.p `
-bg-red-300 -mt-5 mb-6 p-2 text-center -mr-4 text-[12px] w-44 rounded-2xl
+export const BoxRed = tw.div `
+bg-red-300 -mt-5 mb-6 p-2 text-center -mr-4 text-[12px] w-[9.5rem] rounded-2xl
 `
 
 // box style
