@@ -42,7 +42,7 @@ To contribute to this project, follow these steps:
 2. **Install Dependencies:**:
    install all dependencies
    ```bash
-   npm install
+   bun install
 
 3. **Set Up Environment Variables**:
    Create a `.env` file in the `app/` directory and add the following environment variables with your configuration:
@@ -57,15 +57,15 @@ To contribute to this project, follow these steps:
 
 4. **Set Up Prisma:**:
    ```bash
-   npx prisma generate
-   npx prisma migrate dev
+   bun x prisma generate
+   bun x prisma migrate dev
 
 5. **Run the Development Server**:
    ```bash
-   npm run dev
+   bun run dev
 5. **You can run prisma studio to monitoring**:
    ```bash
-   npx prisma studio
+   bun x prisma studio
 
 ## Setup Instructions
 ------
