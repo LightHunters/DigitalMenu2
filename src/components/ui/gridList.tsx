@@ -1,6 +1,5 @@
 import { Box, Card, CardActionArea, CardContent, Typography, Grid, IconButton } from "@mui/material";
-import DeleteIcon from "@mui/icons-material/Delete";
-import EditIcon from "@mui/icons-material/Edit";
+import { MdDelete as DeleteIcon, MdEdit as EditIcon } from "react-icons/md";
 
 interface Category {
   id: string;
@@ -61,13 +60,13 @@ export function GridList({ list, onDelete, onEdit }: GridListProps) {
               >
                 {onEdit && (
                   <IconButton size="small" color="primary" onClick={() => onEdit(cat.id)}>
-                    <EditIcon />
+                    <EditIcon size={22} />
                   </IconButton>
                 )}
 
                 {onDelete && (
                   <IconButton size="small" color="error" onClick={() => onDelete(cat.id)}>
-                    <DeleteIcon />
+                    <DeleteIcon size={22} />
                   </IconButton>
                 )}
               </Box>
