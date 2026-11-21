@@ -1,0 +1,3 @@
+[install]
+# Flat node_modules layout (what Next.js/Prisma expect)
+linker = "hoisted"
